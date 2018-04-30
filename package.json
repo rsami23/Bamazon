@@ -1,0 +1,25 @@
+{
+  "name": "bamazonapp",
+  "version": "1.0.0",
+  "description": "App where customers can purchase items and inventory changes will be updated real time",
+  "main": "bamazoncustomer.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsami23/Bamazon.git"
+  },
+  "author": "Roshnee A",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rsami23/Bamazon/issues"
+  },
+  "homepage": "https://github.com/rsami23/Bamazon#readme",
+  "dependencies": {
+    "cli-table": "^0.3.1",
+    "console.table": "^0.10.0",
+    "inquirer": "^5.2.0",
+    "mysql": "^2.15.0"
+  }
+}
