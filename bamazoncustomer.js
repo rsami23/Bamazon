@@ -49,34 +49,42 @@ function purchase(){
             {
                 name: "id",
                 type: "input",
-                message: "What is the ID of the item you would like to purchase?",
-                validate: function(value) {
-                    if (isNaN(value) === false) {
-                      return true;
-                    }
-                    return false;
-                  }
+                message: "What is the ID of the item you would like to purchase?"
             },
             {
                 name: "numUnits",
                 type: "input",
-                message: "How many units of the item would you like to purchase?",
-                validate: function(value) {
-                    if (isNaN(value) === false) {
-                      return true;
-                    }
-                    return false;
-                  }
+                message: "How many units of the item would you like to purchase?"
             }
         ])
         .then(function(answer){
-            if (answer.numUnits > res[i].stock_quantity){
-                res.stock_quantity -= answer.numUnits;
-                console.log("Successfully added items to your order!");
-                 
-                
-            } else if (answer.numUnits < res[i].stock_quanity){
-                console.log("Sorry we don't have that quantity in stock at the moment.")
-            }
-        })
-}
+            connection.query("SELECT * FROM products WHERE item_id = ?", [answer.id], function(err, res){
+                if(answer.numUnits > res[0].stock_quantity){
+                    console.log("\n------------------------------------------------------------\n");
+                    console.log("Sorry the quantity requested is currently not in stock.");
+                    console.log("Please come back later, or choose another item from the stock.");
+                    console.log("\n------------------------------------------------------------\n");
+                    // console.log(answer.numUnits > res[0].stock_quantity);
+                } 
+                else {
+                    var totalCost = answer.numUnits * res[0].price;
+                    var newQuantity = res[0].stock_quantity - answer.numUnits;
+                    
+                    console.log("\n------------------------------------------------------------\n");
+                    console.log("Your chosen items have been added to your order!")
+                    console.log("Your total for your items are: " + "$" + totalCost);
+                    console.log("\n------------------------------------------------------------\n");
+                    
+                    // UPDATE STOCK_QUANTITY IN DB
+                    connection.query("UPDATE products SET ? WHERE?", [{
+                        stock_quantity: newQuantity
+                    },{
+                        item_id: answer.id
+                    }], function(err, res){
+                        if (err) throw err;
+                    });
+
+                }
+            });
+        }); 
+};
