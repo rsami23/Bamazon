@@ -20,6 +20,10 @@ Bamazon is a Node Command Line application that is lke a storefront. The app wil
 
 <img src = "Images/bamazon.gif" style="width:1100px;height:800px;">
 
+<p>Heres a screenshot of the final terminal results</p>
+
+<img src = "Images/closerlook.png">
+
 <h3>SQL Table</h3>
 
 In this table it shows the updated stock quantity from when i purchased the 50 Face Mask from iten #4. The original stock was 150 and I purchased 50 in the example and now my SQL table is showing 100. 
