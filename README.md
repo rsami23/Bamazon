@@ -18,7 +18,7 @@ Bamazon is a Node Command Line application that is lke a storefront. The app wil
 
 <h3>Demonstration of App</h3>
 
-<img src = "Images/bamazongiph.gif">
+<img src = "Images/bamazon.gif">
 
 <h3>SQL Table</h3>
 
